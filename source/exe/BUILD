@@ -43,6 +43,7 @@ envoy_cc_library(
         "//source/server:listener_hooks_lib",
     ] + select({
         "//bazel:windows_x86_64": envoy_all_extensions(WINDOWS_SKIP_TARGETS),
+        "//bazel:windows_x86_32": envoy_all_extensions(WINDOWS_SKIP_TARGETS),
         "//bazel:linux_ppc": envoy_all_extensions(PPC_SKIP_TARGETS),
         "//conditions:default": envoy_all_extensions(),
     }),
@@ -203,10 +204,17 @@ envoy_cc_library(
         "//bazel:windows_x86_64": [
             "win32/service_base.cc",
         ],
+        "//bazel:windows_x86_32": [
+            "win32/service_base.cc",
+        ],
         "//conditions:default": [],
     }),
     hdrs = select({
         "//bazel:windows_x86_64": [
+            "win32/service_base.h",
+            "win32/service_status.h",
+        ],
+        "//bazel:windows_x86_32": [
             "win32/service_base.h",
             "win32/service_status.h",
         ],
@@ -215,10 +223,19 @@ envoy_cc_library(
     include_prefix = "source/exe",
     strip_include_prefix = select({
         "//bazel:windows_x86_64": "win32",
+        "//bazel:windows_x86_32": "win32",
         "//conditions:default": "",
     }),
     deps = select({
         "//bazel:windows_x86_64": [
+            ":main_common_lib",
+            "//source/common/buffer:buffer_lib",
+            "//source/common/common:assert_lib",
+            "//source/common/common:win32_event_logger_impl_lib",
+            "//source/common/common:thread_lib",
+            "//source/common/event:signal_lib",
+        ],
+        "//bazel:windows_x86_32": [
             ":main_common_lib",
             "//source/common/buffer:buffer_lib",
             "//source/common/common:assert_lib",

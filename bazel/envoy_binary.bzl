@@ -70,6 +70,12 @@ def _envoy_linkopts():
             "-DEFAULTLIB:shell32.lib",
             "-WX",
         ],
+        "@envoy//bazel:windows_x86_32": [
+            "-DEFAULTLIB:ws2_32.lib",
+            "-DEFAULTLIB:iphlpapi.lib",
+            "-DEFAULTLIB:shell32.lib",
+            "-WX",
+        ],
         "//conditions:default": [
             "-pthread",
             "-lrt",
@@ -81,12 +87,14 @@ def _envoy_linkopts():
         "@envoy//bazel:apple": [],
         "@envoy//bazel:boringssl_fips": [],
         "@envoy//bazel:windows_x86_64": [],
+        "@envoy//bazel:windows_x86_32": [],
         "//conditions:default": ["-pie"],
     }) + _envoy_select_exported_symbols(["-Wl,-E"])
 
 def _envoy_stamped_deps():
     return select({
         "@envoy//bazel:windows_x86_64": [],
+        "@envoy//bazel:windows_x86_32": [],
         "@envoy//bazel:apple": [
             "@envoy//bazel:raw_build_id.ldscript",
         ],
@@ -102,6 +110,7 @@ def _envoy_stamped_linkopts():
         # /usr/bin/ld.gold: internal error in write_build_id, at ../../gold/layout.cc:5419
         "@envoy//bazel:coverage_build": [],
         "@envoy//bazel:windows_x86_64": [],
+        "@envoy//bazel:windows_x86_32": [],
 
         # macOS doesn't have an official equivalent to the `.note.gnu.build-id`
         # ELF section, so just stuff the raw ID into a new text section.

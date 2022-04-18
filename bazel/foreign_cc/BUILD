@@ -88,6 +88,7 @@ configure_make(
     out_include_dir = "include/luajit-2.1",
     out_static_libs = select({
         "//bazel:windows_x86_64": ["lua51.lib"],
+        "//bazel:windows_x86_32": ["lua51.lib"],
         "//conditions:default": ["libluajit-5.1.a"],
     }),
     targets = [],
@@ -156,10 +157,12 @@ envoy_cmake(
     }),
     out_static_libs = select({
         "//bazel:windows_x86_64": ["cares.lib"],
+        "//bazel:windows_x86_32": ["cares.lib"],
         "//conditions:default": ["libcares.a"],
     }),
     postfix_script = select({
         "//bazel:windows_x86_64": "cp -L $EXT_BUILD_ROOT/external/com_github_c_ares_c_ares/src/lib/ares_nameser.h $INSTALLDIR/include/ares_nameser.h && cp -L $EXT_BUILD_ROOT/external/com_github_c_ares_c_ares/include/ares_dns.h $INSTALLDIR/include/ares_dns.h",
+        "//bazel:windows_x86_32": "cp -L $EXT_BUILD_ROOT/external/com_github_c_ares_c_ares/src/lib/ares_nameser.h $INSTALLDIR/include/ares_nameser.h && cp -L $EXT_BUILD_ROOT/external/com_github_c_ares_c_ares/include/ares_dns.h $INSTALLDIR/include/ares_dns.h",
         "//conditions:default": "rm -f $INSTALLDIR/include/ares_dns.h && cp -L $EXT_BUILD_ROOT/external/com_github_c_ares_c_ares/include/ares_dns.h $INSTALLDIR/include/ares_dns.h",
     }),
 )
@@ -207,6 +210,7 @@ envoy_cmake(
     lib_source = "@com_github_curl//:all",
     out_static_libs = select({
         "//bazel:windows_x86_64": ["libcurl.lib"],
+        "//bazel:windows_x86_32": ["libcurl.lib"],
         "//conditions:default": ["libcurl.a"],
     }),
     deps = [
@@ -244,6 +248,10 @@ envoy_cmake(
             "libevent_pthreads.a",
         ],
         "//bazel:windows_x86_64": [
+            "event.lib",
+            "event_core.lib",
+        ],
+        "//bazel:windows_x86_32": [
             "event.lib",
             "event_core.lib",
         ],
@@ -397,6 +405,7 @@ envoy_cmake(
     lib_source = "@com_github_nghttp2_nghttp2//:all",
     out_static_libs = select({
         "//bazel:windows_x86_64": ["nghttp2.lib"],
+        "//bazel:windows_x86_32": ["nghttp2.lib"],
         "//conditions:default": ["libnghttp2.a"],
     }),
 )
@@ -484,6 +493,7 @@ envoy_cmake(
     }),
     out_static_libs = select({
         "//bazel:windows_x86_64": ["zlib.lib"],
+        "//bazel:windows_x86_32": ["zlib.lib"],
         "//conditions:default": ["libz.a"],
     }),
 )
@@ -499,6 +509,7 @@ envoy_cmake(
     lib_source = "@com_github_facebook_zstd//:all",
     out_static_libs = select({
         "//bazel:windows_x86_64": ["zstd_static.lib"],
+        "//bazel:windows_x86_32": ["zstd_static.lib"],
         "//conditions:default": ["libzstd.a"],
     }),
     working_directory = "build/cmake",

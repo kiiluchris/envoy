@@ -10,6 +10,7 @@ cc_library(
     ],
     copts = select({
         "@envoy//bazel:windows_x86_64": ["-DWIN32"],
+        "@envoy//bazel:windows_x86_32": ["-DWIN32"],
         "//conditions:default": [],
     }),
     includes = ["src"],

@@ -49,6 +49,7 @@ quiche_common_copts = [
 quiche_copts = select({
     # Ignore unguarded #pragma GCC statements in QUICHE sources
     "@envoy//bazel:windows_x86_64": ["-wd4068"],
+    "@envoy//bazel:windows_x86_32": ["-wd4068"],
     # Remove these after upstream fix.
     "//conditions:default": quiche_common_copts,
 })
@@ -2455,6 +2456,7 @@ envoy_cc_library(
     # Remove this after upstream fix.
     defines = select({
         "@envoy//bazel:windows_x86_64": ["QUIC_FRAME_DEBUG=0"],
+        "@envoy//bazel:windows_x86_32": ["QUIC_FRAME_DEBUG=0"],
         "//conditions:default": [],
     }),
     repository = "@envoy",
@@ -3688,10 +3690,12 @@ envoy_cc_library(
     name = "quic_core_udp_socket_lib",
     srcs = select({
         "@envoy//bazel:windows_x86_64": [],
+        "@envoy//bazel:windows_x86_32": [],
         "//conditions:default": ["quiche/quic/core/quic_udp_socket_posix.cc"],
     }),
     hdrs = select({
         "@envoy//bazel:windows_x86_64": [],
+        "@envoy//bazel:windows_x86_32": [],
         "//conditions:default": ["quiche/quic/core/quic_udp_socket.h"],
     }),
     copts = quiche_copts + select({

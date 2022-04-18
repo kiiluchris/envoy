@@ -379,6 +379,7 @@ build:msvc-cl --features=-determinism
 build:clang-cl --action_env=USE_CLANG_CL=1
 build:clang-cl --define clang_cl=1
 
+
 # Required to work around Windows clang-cl build defects
 # Ignore conflicting definitions of _WIN32_WINNT
 # Override determinism flags (DATE etc) is valid on clang-cl compiler
@@ -401,6 +402,10 @@ build:windows --features=compiler_param_file
 build:windows --features=fully_static_link
 build:windows --features=static_link_msvcrt
 build:windows --dynamic_mode=off
+#
+# Windows 32 bit cross
+build:windows_x86_32 --linkopt=/MACHINE:X86
+
 
 try-import %workspace%/clang.bazelrc
 try-import %workspace%/user.bazelrc

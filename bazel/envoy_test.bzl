@@ -66,6 +66,11 @@ def _envoy_test_linkopts():
             "-DEFAULTLIB:iphlpapi.lib",
             "-WX",
         ],
+        "@envoy//bazel:windows_x86_32": [
+            "-DEFAULTLIB:ws2_32.lib",
+            "-DEFAULTLIB:iphlpapi.lib",
+            "-WX",
+        ],
 
         # TODO(mattklein123): It's not great that we universally link against the following libs.
         # In particular, -latomic and -lrt are not needed on all platforms. Make this more granular.
@@ -121,6 +126,7 @@ def envoy_cc_fuzz_test(
         deps = select({
             "@envoy//bazel:apple": [repository + "//test:dummy_main"],
             "@envoy//bazel:windows_x86_64": [repository + "//test:dummy_main"],
+            "@envoy//bazel:windows_x86_32": [repository + "//test:dummy_main"],
             "//conditions:default": [
                 ":" + test_lib_name,
                 "@envoy//bazel:fuzzing_engine",
