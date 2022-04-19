@@ -472,7 +472,7 @@ config_setting(
 )
 
 config_setting(
-    name = "x86_windows",
+    name = "windows_x86_32",
     values = {"cpu": "x64_x86_windows"},
 )
 
