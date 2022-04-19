@@ -20,6 +20,8 @@ load("//bazel:dependency_imports.bzl", "envoy_dependency_imports")
 
 envoy_dependency_imports()
 
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
 http_archive(
     name = "standalone_cc_toolchain",
     urls = ["https://github.com/meteorcloudy/windows-crosstool/archive/1e717be66497e114ea80296e5ad0485fb468bb25.zip"],
