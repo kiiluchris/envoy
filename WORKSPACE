@@ -19,3 +19,13 @@ envoy_dependencies_extra()
 load("//bazel:dependency_imports.bzl", "envoy_dependency_imports")
 
 envoy_dependency_imports()
+
+http_archive(
+    name = "standalone_cc_toolchain",
+    urls = ["https://github.com/meteorcloudy/windows-crosstool/archive/1e717be66497e114ea80296e5ad0485fb468bb25.zip"],
+    strip_prefix = "windows-crosstool-1e717be66497e114ea80296e5ad0485fb468bb25",
+)
+
+load("@standalone_cc_toolchain//:cc_configure.bzl", "cc_configure")
+
+cc_configure()
