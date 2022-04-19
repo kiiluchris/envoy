@@ -261,7 +261,7 @@ cc_toolchain(
 
 cc_toolchain_config(
     name = "msvc_x64_x86",
-    cpu = "x64_windows",
+    cpu = "x64_x86_windows",
     compiler = "msvc-cl",
     host_system_name = "local",
     target_system_name = "local",
