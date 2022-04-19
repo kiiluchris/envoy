@@ -404,7 +404,8 @@ build:windows --features=static_link_msvcrt
 build:windows --dynamic_mode=off
 #
 # Windows 32 bit cross
-build:windows_x86_32 --linkopt=/MACHINE:X86
+build:x86_windows --crosstool_top=//bazel/x86_windows_toolchain:cc-compiler-x64_x86_windows
+
 
 
 try-import %workspace%/clang.bazelrc
