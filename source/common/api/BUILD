@@ -31,6 +31,7 @@ envoy_cc_library(
             "posix/os_sys_calls_impl_linux.cc",
         ],
         "//bazel:windows_x86_64": ["win32/os_sys_calls_impl.cc"],
+        "//bazel:win_32": ["win32/os_sys_calls_impl.cc"],
         "//conditions:default": ["posix/os_sys_calls_impl.cc"],
     }) + envoy_select_hot_restart(["posix/os_sys_calls_impl_hot_restart.cc"]),
     hdrs = select({
@@ -39,11 +40,13 @@ envoy_cc_library(
             "posix/os_sys_calls_impl_linux.h",
         ],
         "//bazel:windows_x86_64": ["win32/os_sys_calls_impl.h"],
+        "//bazel:win_32": ["win32/os_sys_calls_impl.h"],
         "//conditions:default": ["posix/os_sys_calls_impl.h"],
     }) + envoy_select_hot_restart(["posix/os_sys_calls_impl_hot_restart.h"]),
     include_prefix = "source/common/api",
     strip_include_prefix = select({
         "//bazel:windows_x86_64": "win32",
+        "//bazel:win_32": "win32",
         "//conditions:default": "posix",
     }),
     deps = [

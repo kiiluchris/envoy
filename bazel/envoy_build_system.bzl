@@ -138,6 +138,7 @@ def envoy_cmake(
         # TODO(lizan): Make this always true
         generate_crosstool_file = select({
             "@envoy//bazel:windows_x86_64": True,
+            "@envoy//bazel:win_32": True,
             "//conditions:default": generate_crosstool_file,
         }),
         lib_source = lib_source,
@@ -151,6 +152,7 @@ def envoy_cmake(
 def envoy_cc_platform_dep(name):
     return select({
         "@envoy//bazel:windows_x86_64": [name + "_win32"],
+        "@envoy//bazel:win_32": [name + "_win32"],
         "//conditions:default": [name + "_posix"],
     })
 
@@ -160,6 +162,7 @@ def envoy_cc_platform_dep(name):
 def envoy_cc_platform_specific_dep(name):
     return select({
         "@envoy//bazel:windows_x86_64": [name + "_win32"],
+        "@envoy//bazel:win_32": [name + "_win32"],
         "@envoy//bazel:linux": [name + "_linux"],
         "//conditions:default": [name + "_posix"],
     })

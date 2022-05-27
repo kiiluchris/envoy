@@ -12,7 +12,7 @@ cc_toolchain_suite(
 
 
 cc_toolchain(
-    name = "cc-compiler-x64_windows",
+    name = "cc-compiler-x86_windows",
     all_files = ":empty",
     ar_files = ":empty",
     as_files = ":msvc_compiler_files",
@@ -22,12 +22,12 @@ cc_toolchain(
     objcopy_files = ":empty",
     strip_files = ":empty",
     supports_param_files = 1,
-    toolchain_config = ":msvc_x64",
-    toolchain_identifier = "msvc_x64",
+    toolchain_config = ":msvc_x86",
+    toolchain_identifier = "msvc_x86",
 )
 
 cc_toolchain_config(
-    name = "msvc_x64_x86",
+    name = "msvc_x86",
     abi_libc_version = "local",
     abi_version = "local",
     compiler = "msvc-cl",

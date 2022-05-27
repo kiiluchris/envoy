@@ -45,6 +45,7 @@ def envoy_copts(repository, test = False):
 
     return select({
                repository + "//bazel:windows_x86_64": msvc_options,
+               repository + "//bazel:win_32": msvc_options,
                "//conditions:default": posix_options,
            }) + select({
                # Simplify the amount of symbolic debug info for test binaries, since
@@ -74,6 +75,7 @@ def envoy_copts(repository, test = False):
                # for msvc versions between 15.8 through 16.4.x. see
                # https://docs.microsoft.com/en-us/cpp/build/reference/zc-preprocessor
                repository + "//bazel:windows_x86_64": ["-wd4834", "-Zc:preprocessor", "-Wv:19.4"] if test else ["-Zc:preprocessor", "-Wv:19.4"],
+               repository + "//bazel:win_32": ["-wd4834", "-Zc:preprocessor", "-Wv:19.4"] if test else ["-Zc:preprocessor", "-Wv:19.4"],
                repository + "//bazel:clang_cl_build": ["-Wno-unused-result"] if test else [],
                "//conditions:default": [],
            }) + select({
@@ -143,6 +145,7 @@ def envoy_select_force_libcpp(if_libcpp, default = None):
         "@envoy//bazel:force_libcpp": if_libcpp,
         "@envoy//bazel:apple": [],
         "@envoy//bazel:windows_x86_64": [],
+        "@envoy//bazel:win_32": [],
         "//conditions:default": default or [],
     })
 

@@ -89,6 +89,9 @@ envoy_cc_library(
         "//bazel:windows_x86_64": [
             "win32/watcher_impl.cc",
         ],
+        "//bazel:win_32": [
+            "win32/watcher_impl.cc",
+        ],
         "//conditions:default": [
             "inotify/watcher_impl.cc",
         ],
@@ -98,6 +101,9 @@ envoy_cc_library(
             "kqueue/watcher_impl.h",
         ],
         "//bazel:windows_x86_64": [
+            "win32/watcher_impl.h",
+        ],
+        "//bazel:win_32": [
             "win32/watcher_impl.h",
         ],
         "//conditions:default": [
@@ -111,6 +117,7 @@ envoy_cc_library(
     strip_include_prefix = select({
         "//bazel:apple": "kqueue",
         "//bazel:windows_x86_64": "win32",
+        "//bazel:win_32": "win32",
         "//conditions:default": "inotify",
     }),
     deps = [
@@ -124,6 +131,10 @@ envoy_cc_library(
         "//source/common/network:default_socket_interface_lib",
     ] + select({
         "//bazel:windows_x86_64": [
+            "//source/common/api:os_sys_calls_lib",
+            "//source/common/common:thread_lib",
+        ],
+        "//bazel:win_32": [
             "//source/common/api:os_sys_calls_lib",
             "//source/common/common:thread_lib",
         ],

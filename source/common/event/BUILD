@@ -21,6 +21,9 @@ envoy_cc_library(
         "//bazel:windows_x86_64": [
             "win32/signal_impl.h",
         ],
+        "//bazel:win_32": [
+            "win32/signal_impl.h",
+        ],
         "//conditions:default": [
             "posix/signal_impl.h",
         ],
@@ -28,6 +31,7 @@ envoy_cc_library(
     include_prefix = "source/common/event",
     strip_include_prefix = select({
         "//bazel:windows_x86_64": "win32",
+        "//bazel:win_32": "win32",
         "//conditions:default": "posix",
     }),
     deps = [

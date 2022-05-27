@@ -81,6 +81,7 @@ all_link_actions = [
 
 
 def _impl(ctx):
+    print(ctx.attr)
     artifact_name_patterns = [
         artifact_name_pattern(
             category_name = "object_file",
@@ -501,9 +502,9 @@ def _impl(ctx):
                         flags = ["/OUT:%{output_execpath}"],
                         expand_if_available = "output_execpath",
                     ),
-                    flag_group(
-                        flags = ctx.attr.archiver_flags,
-                    ),
+                    # flag_group(
+                    #     flags = ctx.attr.archiver_flags,
+                    # ),
                 ],
             ),
         ],

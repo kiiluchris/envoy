@@ -39,6 +39,7 @@ filegroup(
     ) + select({
         "//bazel:apple": ["envoy-demo.yaml"],
         "//bazel:windows_x86_64": [],
+        "//bazel:win_32": [],
         "//conditions:default": [
             "envoy-demo.yaml",
             "freebind/freebind.yaml",

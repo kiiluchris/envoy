@@ -240,10 +240,12 @@ envoy_cc_library(
     name = "win32_event_logger_impl_lib",
     srcs = select({
         "//bazel:windows_x86_64": ["win32/event_logger_impl.cc"],
+        "//bazel:win_32": ["win32/event_logger_impl.cc"],
         "//conditions:default": [],
     }),
     hdrs = select({
         "//bazel:windows_x86_64": ["win32/event_logger_impl.h"],
+        "//bazel:win_32": ["win32/event_logger_impl.h"],
         "//conditions:default": [],
     }),
     deps = [":base_logger_lib"],

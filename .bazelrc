@@ -411,8 +411,12 @@ build:windows --features=static_link_msvcrt
 build:windows --dynamic_mode=off
 
 build:win_32 --crosstool_top=//bazel/win_32:clang_suite
-build:win_32 --cpu=x64_x86_windows 
+build:win_32 --cpu=x64_x86_windows
 build:win_32 --host_crosstool_top=@bazel_tools//tools/cpp:toolchain
+
+# build:win_32 --crosstool_top=//bazel/win_32:clang_suite
+# build:win_32 --cpu=x64_x86_windows
+# build:win_32 --host_crosstool_top=@bazel_tools//tools/cpp:toolchain
 
 try-import %workspace%/clang.bazelrc
 try-import %workspace%/user.bazelrc

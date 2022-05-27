@@ -140,10 +140,12 @@ def envoy_cc_posix_library(name, srcs = [], hdrs = [], **kargs):
         name = name + "_posix",
         srcs = select({
             "@envoy//bazel:windows_x86_64": [],
+            "@envoy//bazel:win_32": [],
             "//conditions:default": srcs,
         }),
         hdrs = select({
             "@envoy//bazel:windows_x86_64": [],
+            "@envoy//bazel:win_32": [],
             "//conditions:default": hdrs,
         }),
         **kargs
@@ -155,11 +157,13 @@ def envoy_cc_posix_without_linux_library(name, srcs = [], hdrs = [], **kargs):
         name = name + "_posix",
         srcs = select({
             "@envoy//bazel:windows_x86_64": [],
+            "@envoy//bazel:win_32": [],
             "@envoy//bazel:linux": [],
             "//conditions:default": srcs,
         }),
         hdrs = select({
             "@envoy//bazel:windows_x86_64": [],
+            "@envoy//bazel:win_32": [],
             "@envoy//bazel:linux": [],
             "//conditions:default": hdrs,
         }),
@@ -187,10 +191,12 @@ def envoy_cc_win32_library(name, srcs = [], hdrs = [], **kargs):
         name = name + "_win32",
         srcs = select({
             "@envoy//bazel:windows_x86_64": srcs,
+            "@envoy//bazel:win_32": srcs,
             "//conditions:default": [],
         }),
         hdrs = select({
             "@envoy//bazel:windows_x86_64": hdrs,
+            "@envoy//bazel:win_32": hdrs,
             "//conditions:default": [],
         }),
         **kargs
