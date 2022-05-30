@@ -4,6 +4,10 @@ package(default_visibility = ["//visibility:public"])
 
 
 filegroup(
+    name = "empty",
+)
+
+filegroup(
     name = "clangcl_compiler_files",
     srcs = [":builtin_include_directory_paths_clangcl"]
 )
