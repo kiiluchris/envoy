@@ -699,7 +699,12 @@ def _impl(ctx):
             ),
             flag_set(
                 actions = all_link_actions,
-                flag_groups = [flag_group(flags = ["/DEFAULTLIB:msvcrt.lib"])],
+                flag_groups = [flag_group(flags = [
+                  "/DEFAULTLIB:msvcrt.lib",
+                  "/NODEFAULTLIB:libcmtd.lib",
+                  "/NODEFAULTLIB:libcmt.lib",
+                  "/NODEFAULTLIB:msvcrtd.lib",
+                ])],
             ),
         ],
         requires = [
@@ -781,7 +786,12 @@ def _impl(ctx):
             ),
             flag_set(
                 actions = all_link_actions,
-                flag_groups = [flag_group(flags = ["/DEFAULTLIB:libcmt.lib"])],
+                flag_groups = [flag_group(flags = [
+                  "/DEFAULTLIB:libcmt.lib",
+                  "/NODEFAULTLIB:libcmtd.lib",
+                  "/NODEFAULTLIB:msvcrt.lib",
+                  "/NODEFAULTLIB:msvcrtd.lib",
+                ])],
             ),
         ],
         requires = [
@@ -877,7 +887,12 @@ def _impl(ctx):
             ),
             flag_set(
                 actions = all_link_actions,
-                flag_groups = [flag_group(flags = ["/DEFAULTLIB:libcmtd.lib"])],
+                flag_groups = [flag_group(flags = [
+                  "/DEFAULTLIB:libcmtd.lib",
+                  "/NODEFAULTLIB:libcmt.lib",
+                  "/NODEFAULTLIB:msvcrt.lib",
+                  "/NODEFAULTLIB:msvcrtd.lib",
+                ])],
             ),
         ],
         requires = [feature_set(features = ["dbg"])],
