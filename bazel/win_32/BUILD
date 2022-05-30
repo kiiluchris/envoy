@@ -2,6 +2,18 @@ load(":cc_toolchain_config.bzl", "cc_toolchain_config")
 
 package(default_visibility = ["//visibility:public"])
 
+
+filegroup(
+    name = "clangcl_compiler_files",
+    srcs = [":builtin_include_directory_paths_clangcl"]
+)
+
+filegroup(
+    name = "msvc_compiler_files",
+    srcs = [":builtin_include_directory_paths_msvc"]
+)
+
+
 cc_toolchain_suite(
     name = "clang_suite",
     toolchains = {
