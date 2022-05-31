@@ -13,6 +13,7 @@ envoy_cc_test(
     srcs = ["access_log_impl_test.cc"],
     copts = select({
         "//bazel:windows_x86_64": [],  # TODO: fix the windows ANTLR build
+        "//bazel:win_32": [],  # TODO: fix the windows ANTLR build
         "//conditions:default": [
             "-DUSE_CEL_PARSER",
         ],

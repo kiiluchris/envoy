@@ -31,6 +31,7 @@ filegroup(
         ],
     ) + select({
         "//bazel:windows_x86_64": [],
+        "//bazel:win_32": [],
         "//conditions:default": [
             "root/configuration/http/http_filters/_include/dns-cache-circuit-breaker.yaml",
             "root/intro/arch_overview/security/_include/ssl.yaml",

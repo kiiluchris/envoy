@@ -14,6 +14,7 @@ envoy_cc_extension(
     hdrs = ["config.h"],
     copts = select({
         "//bazel:windows_x86_64": [],  # TODO: fix the windows ANTLR build
+        "//bazel:win_32": [],  # TODO: fix the windows ANTLR build
         "//conditions:default": [
             "-DUSE_CEL_PARSER",
         ],
@@ -27,6 +28,7 @@ envoy_cc_extension(
     ] + select(
         {
             "//bazel:windows_x86_64": [],
+            "//bazel:win_32": [],
             "//conditions:default": [
                 "@com_google_cel_cpp//parser",
             ],

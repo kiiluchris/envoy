@@ -609,6 +609,7 @@ selects.config_setting_group(
         ":ios_x86_64",
         ":linux_x86_64",
         ":windows_x86_64",
+        ":win_32",
     ],
 )
 

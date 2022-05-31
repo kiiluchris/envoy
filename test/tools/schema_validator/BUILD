@@ -16,6 +16,7 @@ envoy_cc_test_binary(
     srcs = ["schema_validator.cc"],
     deps = [":schema_validator_lib"] + select({
         "//bazel:windows_x86_64": envoy_all_extensions(WINDOWS_SKIP_TARGETS),
+        "//bazel:win_32": envoy_all_extensions(WINDOWS_SKIP_TARGETS),
         "//bazel:linux_ppc": envoy_all_extensions(PPC_SKIP_TARGETS),
         "//conditions:default": envoy_all_extensions(),
     }),

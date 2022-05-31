@@ -20,6 +20,7 @@ envoy_cc_test(
     }),
     copts = select({
         "//bazel:windows_x86_64": [],
+        "//bazel:win_32": [],
         "//conditions:default": ["-Wno-unused-parameter"],
     }),
     data = ["//test/extensions/transport_sockets/tls/test_data:certs"],
