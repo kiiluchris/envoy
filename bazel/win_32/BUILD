@@ -22,6 +22,7 @@ cc_toolchain_suite(
     name = "clang_suite",
     toolchains = {
         "x64_x86_windows": ":cc-compiler-x86_windows",
+        "x64_x86_windows|msvc-cl": ":cc-compiler-x86_windows",
         "x64_x86_windows|clang-cl": ":cc-compiler-x64_x86_windows-clang-cl",
     },
 )
@@ -57,7 +58,7 @@ cc_toolchain_config(
         "C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.18362.0\\cppwinrt",
     ],
     dbg_mode_debug_flag = "/DEBUG:FULL",
-    default_link_flags = ["/MACHINE:X86"],
+    default_link_flags = ["/MACHINE:X86", "/DWIN32"],
     fastbuild_mode_debug_flag = "/DEBUG:FASTLINK",
     host_system_name = "local",
     msvc_cl_path = "C:/Program Files (x86)/Microsoft Visual Studio/2019/BuildTools/VC/Tools/MSVC/14.29.30133/bin/HostX64/x86/cl.exe",
@@ -141,7 +142,8 @@ cc_toolchain_config(
     dbg_mode_debug_flag = "/DEBUG",
     default_link_flags = [
         "/MACHINE:X86",
-        "/DEFAULTLIB:clang_rt.builtins-x86_64.lib",
+        # "/DEFAULTLIB:clang_rt.builtins-x86_64.lib",
+        "/DWIN32",
     ],
     fastbuild_mode_debug_flag = "/DEBUG",
     host_system_name = "local",
