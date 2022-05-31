@@ -502,9 +502,9 @@ def _impl(ctx):
                         flags = ["/OUT:%{output_execpath}"],
                         expand_if_available = "output_execpath",
                     ),
-                    # flag_group(
-                    #     flags = ctx.attr.archiver_flags,
-                    # ),
+                    flag_group(
+                        flags = ctx.attr.archiver_flags,
+                    ),
                 ],
             ),
         ],
