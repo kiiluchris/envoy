@@ -62,6 +62,10 @@ cc_toolchain_config(
       "/MACHINE:X86",
       "/DWIN32",
     ],
+    archiver_flags = [
+      "/MACHINE:X86",
+      "/DWIN32",
+    ],
     fastbuild_mode_debug_flag = "/DEBUG:FASTLINK",
     host_system_name = "local",
     msvc_cl_path = "C:/Program Files (x86)/Microsoft Visual Studio/2019/BuildTools/VC/Tools/MSVC/14.29.30133/bin/HostX64/x86/cl.exe",
@@ -147,6 +151,10 @@ cc_toolchain_config(
         "/MACHINE:X86",
         # "/DEFAULTLIB:clang_rt.builtins-x86_64.lib",
         "/DWIN32",
+    ],
+    archiver_flags = [
+      "/MACHINE:X86",
+      "/DWIN32",
     ],
     fastbuild_mode_debug_flag = "/DEBUG",
     host_system_name = "local",
